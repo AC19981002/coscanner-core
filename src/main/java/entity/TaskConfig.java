@@ -16,13 +16,13 @@ import lombok.NoArgsConstructor;
 public class TaskConfig {
 
     @SerializedName("repoURL")
-    private String repoUrl = null;
+    private String repoUrl = "";
     @SerializedName("commitStart")
-    private String commitStrat = null;
+    private String commitStrat = "";
     @SerializedName("commitEnd")
-    private String commitEnd = null;
+    private String commitEnd = "";
     @SerializedName("taskCreator")
-    private String taskCreator = null;
+    private String taskCreator = "";
 
     private void TaskConfig(){}
 
