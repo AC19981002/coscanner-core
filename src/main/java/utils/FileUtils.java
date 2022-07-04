@@ -11,6 +11,8 @@ import java.nio.file.Paths;
  */
 public class FileUtils {
 
+    //Java 11 写法 文件大小不能超过2G
+
     public static String readFile(String fileName) {
         String content = null;
         try {
@@ -19,6 +21,14 @@ public class FileUtils {
             e.printStackTrace();
         }
         return content;
+    }
+
+    public static void writeToFile(String filePath,String content) {
+        try {
+            Files.writeString(Paths.get(filePath),content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
