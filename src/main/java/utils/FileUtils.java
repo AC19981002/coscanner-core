@@ -36,14 +36,14 @@ public class FileUtils {
     }
 
     //TODO explore files by keyword
-    public static List<File> explorerFile(String dirPath, String fileType) {
-        return explorerAllFile(dirPath)
+    public static List<File> exploreFile(String dirPath, String fileType) {
+        return exploreAllFile(dirPath)
                 .stream()
                 .filter(file -> file.getName().substring(file.getName().lastIndexOf(".")+1).equals(fileType))
                 .collect(Collectors.toList());
     }
 
-    public static List<File> explorerAllFile(String dirPath) {
+    public static List<File> exploreAllFile(String dirPath) {
         List<File> fileList = new ArrayList<>();
         dfsGetAllFiles(new File(dirPath), fileList);
         return fileList;

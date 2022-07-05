@@ -65,7 +65,7 @@ public class DemoTest {
 
     @Test
     public void FileUtilsTest(){
-        for (File file : FileUtils.explorerFile("src/main/resources", FileType.PROPERTY.getFileType())) {
+        for (File file : FileUtils.exploreFile("src/main/resources", FileType.PROPERTY.getFileType())) {
             System.out.println(file.getName());
         }
     }
