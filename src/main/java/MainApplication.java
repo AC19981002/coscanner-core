@@ -6,4 +6,7 @@ import javax.security.auth.callback.Callback;
  * @Email 1351170669@qq.com
  */
 public class MainApplication {
+    public static void main(String[] args) {
+
+    }
 }
