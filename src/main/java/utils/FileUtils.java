@@ -1,8 +1,10 @@
 package utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * @author chenzhen
@@ -29,6 +31,11 @@ public class FileUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //TODO explore files by keyword
+    public static List<File> explorerFile(String dirPath, String keyword){
+        return null;
     }
 
 }
