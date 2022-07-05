@@ -7,6 +7,5 @@ import javax.security.auth.callback.Callback;
  */
 public class MainApplication {
     public static void main(String[] args) {
-
     }
 }
