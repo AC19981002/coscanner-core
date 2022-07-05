@@ -17,10 +17,10 @@ import utils.FileUtils;
  */
 //TODO 把所有的properties持久化到Mannager方便管理
 public class PropertityMannager {
-    private static HashMap<Object, Object> properties = new HashMap<Object, Object>();
+    public static HashMap<Object, Object> properties = new HashMap<Object, Object>();
     private String dirPath = "src/main/resources";
 
-    public PropertityMannager(){
+    public PropertityMannager() {
         for (File file : FileUtils.exploreFile(dirPath, FileType.PROPERTY.getFileType())) {
             Properties properties = new Properties();
             try {

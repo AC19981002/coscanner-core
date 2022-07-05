@@ -1,4 +1,9 @@
+import java.util.Map;
+import java.util.Properties;
+
 import javax.security.auth.callback.Callback;
+
+import framework.PropertityMannager;
 
 /**
  * @author chenzhen
@@ -7,5 +12,6 @@ import javax.security.auth.callback.Callback;
  */
 public class MainApplication {
     public static void main(String[] args) {
+        new PropertityMannager();
     }
 }
