@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,17 +26,41 @@ public class FileUtils {
         return content;
     }
 
-    public static void writeToFile(String filePath,String content) {
+    public static void writeToFile(String filePath, String content) {
         try {
-            Files.writeString(Paths.get(filePath),content);
+            Files.writeString(Paths.get(filePath), content);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     //TODO explore files by keyword
-    public static List<File> explorerFile(String dirPath, String keyword){
+    public static List<File> explorerFile(String dirPath, String fileType) {
         return null;
     }
+
+    //TODO collect all files under root Dir
+    public static List<File> explorerAllFile(String dirPath) {
+        List<File> fileList = new ArrayList<>();
+        dfsGetAllFiles(new File(dirPath), fileList);
+        return fileList;
+    }
+
+    private static List<File> dfsGetAllFiles(File file, List<File> fileList) {
+        if (file.isFile()) {
+            fileList.add(file);
+            return fileList;
+        } else if (file.isDirectory()) {
+            for (File listFile : file.listFiles()) {
+                if (listFile.isFile()) {
+                    fileList.add(listFile);
+                } else {
+                    dfsGetAllFiles(listFile, fileList);
+                }
+            }
+        }
+        return fileList;
+    }
+
 
 }
