@@ -1,13 +1,18 @@
 import com.google.gson.reflect.TypeToken;
+
+import constants.FileType;
 import entity.TaskConfig;
+
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
 import utils.FileUtils;
 import utils.GsonUtils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,13 +29,14 @@ import java.util.Properties;
 public class DemoTest {
 
     private static final Logger log = Logger.getLogger(DemoTest.class);
+
     @Test
-    public void log4jTest(){
+    public void log4jTest() {
         log.debug("test demo");
     }
 
     @Test
-    public void propertiesTest(){
+    public void propertiesTest() {
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream("src/main/resources/configs.properties"));
@@ -39,20 +45,29 @@ public class DemoTest {
         }
         System.out.println(properties.toString());
         properties.forEach((key, value) -> {
-            System.out.println(key + ": "+ value.toString());
+            System.out.println(key + ": " + value.toString());
         });
         System.out.println(properties.get("git.account.username").toString());
         System.out.println(properties.get("git.account.token").toString());
     }
 
     @Test
-    public void gsonTest(){
+    public void gsonTest() {
         List<TaskConfig> list = new ArrayList<>();
-       list =  GsonUtils.gson.fromJson(FileUtils.readFile("src/main/resources/mocktask.json"),new TypeToken<List<TaskConfig>>(){}.getType());
+        list = GsonUtils.gson.fromJson(FileUtils.readFile("src/main/resources/mocktask.json"), new TypeToken<List<TaskConfig>>() {
+        }.getType());
         for (TaskConfig taskConfig : list) {
             System.out.println(taskConfig.toString());
         }
-        list.add(new TaskConfig("3","3","3","3"));
+        list.add(new TaskConfig("3", "3", "3", "3"));
         System.out.println(GsonUtils.gson.toJson(list));
     }
+
+    @Test
+    public void FileUtilsTest(){
+        for (File file : FileUtils.explorerFile("src/main/resources", FileType.PROPERTY.getFileType())) {
+            System.out.println(file.getName());
+        }
+    }
+
 }

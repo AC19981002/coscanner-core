@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author chenzhen
@@ -36,10 +37,12 @@ public class FileUtils {
 
     //TODO explore files by keyword
     public static List<File> explorerFile(String dirPath, String fileType) {
-        return null;
+        return explorerAllFile(dirPath)
+                .stream()
+                .filter(file -> file.getName().substring(file.getName().lastIndexOf(".")+1).equals(fileType))
+                .collect(Collectors.toList());
     }
 
-    //TODO collect all files under root Dir
     public static List<File> explorerAllFile(String dirPath) {
         List<File> fileList = new ArrayList<>();
         dfsGetAllFiles(new File(dirPath), fileList);

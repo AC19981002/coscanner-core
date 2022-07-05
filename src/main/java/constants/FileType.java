@@ -1,5 +1,7 @@
 package constants;
 
+import lombok.Data;
+
 /**
  * @author chenzhen
  * @date 2022/7/5 10:27 上午
@@ -8,17 +10,20 @@ package constants;
 //TODO
 // a set of prefix and suffix
 // like .java .properties or .class...
-
 public enum FileType {
 
-    JAVA(".java"),
-    PROPERTY(".properties"),
-    ClASS(".class");
+    JAVA("java"),
+    PROPERTY("properties"),
+    ClASS("class");
 
-    private final String keyword;
+    private  String fileType;
 
-    private FileType(String keyword) {
-        this.keyword = keyword;
+    private FileType(String fileType) {
+        this.fileType = fileType;
+    }
+
+    public String getFileType() {
+        return this.fileType;
     }
 
 }

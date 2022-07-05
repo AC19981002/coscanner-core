@@ -12,7 +12,4 @@ import java.util.HashMap;
 public class PropertityMannager {
     private static HashMap<String, String> properties = new HashMap<>();
 
-    public static void main(String[] args) {
-
-    }
 }
