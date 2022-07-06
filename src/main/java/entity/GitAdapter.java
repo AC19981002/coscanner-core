@@ -29,8 +29,8 @@ import java.util.List;
 public class GitAdapter {
     private static final Logger logger = Logger.getLogger(GitAdapter.class);
 
-    private final static String REF_HEADS = "dev";
-    private final static String MASTER_BRANCH = "master";
+    private  String FEATURE = "dev";
+    private static final String MASTER_BRANCH = "master";
 
     // 远程仓库路径  用的就是.git
     private String remotePath;
@@ -76,22 +76,22 @@ public class GitAdapter {
      * 默认初始化的时候会自动拉取 @branchName 的最新代码
      * @return
      */
-    public  Git initGit() throws IOException, NoHeadException, RefNotAdvertisedException {
+    public Git initGit() throws IOException, NoHeadException, RefNotAdvertisedException {
         File file = new File(localPath);
         logger.info("文件路径"+localPath);
         // 如果文件存在 说明已经拉取过代码,则拉取最新代码
         if(file.exists()) {
             try {
                 git = Git.open(new File(localPath));
-                // 判断是否是最新代码 判断是否是最新代码好像耗时更久？？！
-                boolean isLatest = checkBranchNewVersion(git.getRepository().exactRef(REF_HEADS+branchName));
-                if (isLatest==true) {
-                    logger.info("the local version is latest, need not pull it");
-                } else {
+//                判断是否是最新代码 判断是否是最新代码好像耗时更久？？！
+//                boolean isLatest = checkBranchNewVersion(git.getRepository().exactRef(FEATURE+branchName));
+//                if (isLatest==true) {
+//                    logger.info("the local version is latest, need not pull it");
+//                } else {
                     // 拉取最新的提交
                     git.pull().setCredentialsProvider(usernamePasswordCredentialsProvider).call();
                     logger.info("pull success");
-                }
+//                }
             } catch (CanceledException e) {
                 e.printStackTrace();
             } catch (GitAPIException e) {
@@ -139,7 +139,8 @@ public class GitAdapter {
      */
     public Ref getBranchRef(String branchName) {
         try {
-            return this.branchRef = git.getRepository().exactRef(REF_HEADS+branchName);
+            return this.branchRef = git.getRepository().exactRef(branchName);
+            git.getRepository().get
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -154,7 +155,7 @@ public class GitAdapter {
      * @throws IOException
      */
     public String getBranchSpecificFileContent(String branchName, String javaPath) throws IOException {
-        Ref branch = repository.exactRef( REF_HEADS + branchName);
+        Ref branch = repository.exactRef( FEATURE + branchName);
         ObjectId objId = branch.getObjectId();
         RevWalk walk = new RevWalk(repository);
         RevTree tree = walk.parseTree(objId);
@@ -291,7 +292,7 @@ public class GitAdapter {
      * @throws IOException
      * @throws GitAPIException
      */
-    public List<RevCommit> getCommitMessages() throws IOException, GitAPIException {
+    public List<RevCommit> getCommitList() throws IOException, GitAPIException {
         List<RevCommit> commitList = new ArrayList<>();
         Iterable<RevCommit> commits = git.log().all().call();
         RevWalk walk = new RevWalk(repository);

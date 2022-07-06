@@ -6,8 +6,10 @@ import entity.TaskConfig;
 
 import framework.PropertityMannager;
 import org.apache.log4j.Logger;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -80,17 +82,16 @@ public class DemoTest {
     }
 
     @Test
-    public void gitTest(){
+    public void gitTest() throws GitAPIException, IOException {
         GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
-        try {
-            gitAdapter.initGit();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoHeadException e) {
-            e.printStackTrace();
-        } catch (RefNotAdvertisedException e) {
-            e.printStackTrace();
-        }
+        List<RevCommit> commitList = gitAdapter.getCommitList();
+        System.out.println(commitList.size());
+        gitAdapter.checkOutAndPull("dev");
     }
 
+    @Test
+    public void git01Test() throws GitAPIException, IOException {
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
+        gitAdapter.checkOutAndPull("dev");
+    }
 }
