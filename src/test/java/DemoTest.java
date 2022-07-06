@@ -1,9 +1,13 @@
 import com.google.gson.reflect.TypeToken;
 
 import constants.FileType;
+import entity.GitAdapter;
 import entity.TaskConfig;
 
+import framework.PropertityMannager;
 import org.apache.log4j.Logger;
+import org.eclipse.jgit.api.errors.NoHeadException;
+import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,6 +71,25 @@ public class DemoTest {
     public void FileUtilsTest(){
         for (File file : FileUtils.exploreFile("src/main/resources", FileType.PROPERTY.getFileType())) {
             System.out.println(file.getName());
+        }
+    }
+
+    @Test
+    public void FileTest(){
+        File file = new File("src/main/resources/repo");
+    }
+
+    @Test
+    public void gitTest(){
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
+        try {
+            gitAdapter.initGit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoHeadException e) {
+            e.printStackTrace();
+        } catch (RefNotAdvertisedException e) {
+            e.printStackTrace();
         }
     }
 

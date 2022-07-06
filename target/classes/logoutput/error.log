@@ -1,1 +1,5 @@
 2022-07-04 23:20:39  [ main:0 ] - [ DEBUG ]  test demo
+2022-07-06 23:44:49  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:44:49  [ main:385 ] - [ INFO ]  pull failure
+2022-07-06 23:47:33  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:47:36  [ main:2452 ] - [ INFO ]  down success
