@@ -1,6 +1,8 @@
 package entity;
 
 import framework.PropertityMannager;
+import utils.StringUtils;
+
 import org.apache.log4j.Logger;
 import org.eclipse.jgit.api.CreateBranchCommand;
 import org.eclipse.jgit.api.Git;
@@ -29,7 +31,7 @@ import java.util.List;
 public class GitAdapter {
     private static final Logger logger = Logger.getLogger(GitAdapter.class);
 
-    private  String FEATURE = "dev";
+    private String FEATURE = "dev";
     private static final String MASTER_BRANCH = "master";
 
     // 远程仓库路径  用的就是.git
@@ -50,9 +52,9 @@ public class GitAdapter {
     //  Git授权
     private static UsernamePasswordCredentialsProvider usernamePasswordCredentialsProvider;
 
-    private static String username ="1351170669@qq.com";
+    private static final String username ="1351170669@qq.com";
 
-    private static String password ="17314547ad6cc99fec2ec0597ccecad3";
+    private static final String password ="17314547ad6cc99fec2ec0597ccecad3";
     /**
      * 构造函数：没有传分支信息则默认拉取master代码
      * @param remotePath
@@ -64,7 +66,7 @@ public class GitAdapter {
 
     public GitAdapter(String remotePath, String localPath, String branchName) {
         this.remotePath = remotePath;
-        this.localPath = localPath;
+        this.localPath = localPath+"/"+StringUtils.getGitProjectName(remotePath);
         this.branchName = branchName;
         localGitPath = this.localPath+"/.git";
         // 鉴权账户密码可用自己gitHub的账户密码，或者是设置token
@@ -84,11 +86,12 @@ public class GitAdapter {
             try {
                 git = Git.open(new File(localPath));
 //                判断是否是最新代码 判断是否是最新代码好像耗时更久？？！
+//                TMD屁事真多，直接拉！！！
 //                boolean isLatest = checkBranchNewVersion(git.getRepository().exactRef(FEATURE+branchName));
 //                if (isLatest==true) {
 //                    logger.info("the local version is latest, need not pull it");
 //                } else {
-                    // 拉取最新的提交
+//                     拉取最新的提交
                     git.pull().setCredentialsProvider(usernamePasswordCredentialsProvider).call();
                     logger.info("pull success");
 //                }
@@ -140,7 +143,6 @@ public class GitAdapter {
     public Ref getBranchRef(String branchName) {
         try {
             return this.branchRef = git.getRepository().exactRef(branchName);
-            git.getRepository().get
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -268,6 +270,7 @@ public class GitAdapter {
      * @return  boolean
      * @throws GitAPIException GitAPIException
      */
+
     private boolean checkBranchNewVersion(Ref localRef) throws GitAPIException {
         String localRefName = localRef.getName(); //  refs/heads/master 分支名
         String localRefObjectId = localRef.getObjectId().getName(); //commit_id
@@ -285,7 +288,6 @@ public class GitAdapter {
         }
         return false;
     }
-
     /**
      * 获取当前分支的所有提交
      * @return

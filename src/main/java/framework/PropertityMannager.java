@@ -17,8 +17,8 @@ import utils.FileUtils;
  */
 //TODO 把所有的properties持久化到Mannager方便管理
 public class PropertityMannager {
-    public static HashMap<Object, Object> properties = new HashMap<Object, Object>();
-    private String dirPath = "src/main/resources";
+    public HashMap<String, String> properties = new HashMap<String, String>();
+    private static final String dirPath = "src/main/resources";
 
     public PropertityMannager() {
         for (File file : FileUtils.exploreFile(dirPath, FileType.PROPERTY.getFileType())) {
@@ -30,7 +30,7 @@ public class PropertityMannager {
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
-            properties.forEach((key, value) -> PropertityMannager.properties.put(key, value));
+            properties.forEach((key, value) -> this.properties.put((String) key, (String)value));
         }
     }
 

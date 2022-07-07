@@ -10,6 +10,7 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,10 @@ import java.util.Properties;
 public class DemoTest {
 
     private static final Logger log = Logger.getLogger(DemoTest.class);
+
+    private static final PropertityMannager properties = new PropertityMannager();
+
+
 
     @Test
     public void log4jTest() {
@@ -81,17 +86,5 @@ public class DemoTest {
         File file = new File("src/main/resources/repo");
     }
 
-    @Test
-    public void gitTest() throws GitAPIException, IOException {
-        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
-        List<RevCommit> commitList = gitAdapter.getCommitList();
-        System.out.println(commitList.size());
-        gitAdapter.checkOutAndPull("dev");
-    }
 
-    @Test
-    public void git01Test() throws GitAPIException, IOException {
-        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
-        gitAdapter.checkOutAndPull("dev");
-    }
 }

@@ -7,5 +7,14 @@ package constants;
  */
 
 //TODO collect GramFeatures from rpc ,restful api and mq;
-public enum GramFeatures {
+public class GramFeatures {
+    enum Annotation{
+
+        CONTROLLER("@controller");
+
+        private String value;
+        private Annotation(String value) {
+            this.value = value;
+        }
+    }
 }
