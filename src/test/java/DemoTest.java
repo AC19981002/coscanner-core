@@ -37,7 +37,7 @@ public class DemoTest {
 
     private static final Logger log = Logger.getLogger(DemoTest.class);
 
-    private static final PropertityMannager properties = new PropertityMannager();
+//    private static final PropertityMannager properties = new PropertityMannager();
 
 
 

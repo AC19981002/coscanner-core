@@ -19,8 +19,9 @@ import utils.FileUtils;
 public class PropertityMannager {
     public HashMap<String, String> properties = new HashMap<String, String>();
     private static final String dirPath = "src/main/resources";
+    private static volatile PropertityMannager mInstance = null;
 
-    public PropertityMannager() {
+    private PropertityMannager(){
         for (File file : FileUtils.exploreFile(dirPath, FileType.PROPERTY.getFileType())) {
             Properties properties = new Properties();
             try {
@@ -32,6 +33,18 @@ public class PropertityMannager {
             }
             properties.forEach((key, value) -> this.properties.put((String) key, (String)value));
         }
+    }
+
+    public static PropertityMannager getInstance(){
+        if(mInstance==null){
+            synchronized (PropertityMannager.class){
+                //第二次校验singleton是否为空
+                if(mInstance==null){
+                    mInstance = new PropertityMannager();
+                }
+            }
+        }
+        return mInstance;
     }
 
 }

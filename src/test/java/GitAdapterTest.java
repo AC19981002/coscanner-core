@@ -24,10 +24,10 @@ public class GitAdapterTest {
 
     private static final Logger log = Logger.getLogger(GitAdapterTest.class);
 
-    private static final PropertityMannager properties = new PropertityMannager();
+    private static final PropertityMannager properties = PropertityMannager.getInstance();
 
     @Test
-    public void gitRefTest() {
+    public void gitRefListTest() {
         GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
         gitAdapter.initGit();
         List<Ref> call = null;
@@ -40,6 +40,18 @@ public class GitAdapterTest {
             System.out.println("Branch:  "  + ref.getName() +"   "
                     + ref.getObjectId().getName());
         });
+    }
+
+    @Test
+    public void gitRefTest() {
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
+        gitAdapter.initGit();
+        try {
+            Ref ref = gitAdapter.getGit().getRepository().exactRef("refs/heads/dev");
+            System.out.println(ref.toString());
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     @Test
