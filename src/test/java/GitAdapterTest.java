@@ -1,5 +1,7 @@
 import org.apache.log4j.Logger;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +9,7 @@ import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import entity.GitAdapter;
 import framework.PropertityMannager;
@@ -24,20 +27,45 @@ public class GitAdapterTest {
     private static final PropertityMannager properties = new PropertityMannager();
 
     @Test
+    public void gitRefTest() {
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
+        gitAdapter.initGit();
+        List<Ref> call = null;
+        try {
+            call = gitAdapter.getGit().branchList().call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
+        call.forEach((ref)->{
+            System.out.println("Branch:  "  + ref.getName() +"   "
+                    + ref.getObjectId().getName());
+        });
+    }
+
+    @Test
+    public void gitGetCommitListTest() {
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
+        gitAdapter.initGit();
+        List<RevCommit> baseCommit = gitAdapter.getCommitList();
+        gitAdapter.checkOutAndPull("dev");
+        List<RevCommit> headCommit = gitAdapter.getCommitList();
+        System.out.println("-----");
+    }
+
+    @Test
     public void gitInitTest() throws GitAPIException, IOException {
-        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
         gitAdapter.initGit();
     }
 
     @Test
     public void gitCheckoutAndPullTest() throws GitAPIException, IOException {
-        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo","master");
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
         gitAdapter.initGit();
         gitAdapter.checkOutAndPull("dev");
     }
 
-    @After
-    public void delete(){
+    public void delete() {
         try {
             Thread.sleep(10000);
             org.apache.commons.io.FileUtils.forceDelete(new File("src/main/resources/repo"));

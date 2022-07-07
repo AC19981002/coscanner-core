@@ -1,6 +1,8 @@
 package entity;
 
 import framework.PropertityMannager;
+import lombok.Getter;
+import lombok.Setter;
 import utils.StringUtils;
 
 import org.apache.log4j.Logger;
@@ -28,6 +30,9 @@ import java.util.List;
  * 2022/7/6
  * email:1351170669@qq.com
  */
+
+@Setter
+@Getter
 public class GitAdapter {
     private static final Logger logger = Logger.getLogger(GitAdapter.class);
 
@@ -78,7 +83,7 @@ public class GitAdapter {
      * 默认初始化的时候会自动拉取 @branchName 的最新代码
      * @return
      */
-    public Git initGit() throws IOException, NoHeadException, RefNotAdvertisedException {
+    public Git initGit() {
         File file = new File(localPath);
         logger.info("文件路径"+localPath);
         // 如果文件存在 说明已经拉取过代码,则拉取最新代码
@@ -100,7 +105,7 @@ public class GitAdapter {
             } catch (GitAPIException e) {
                 logger.info("pull failure");
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException e ) {
                 logger.info("pull failure");
                 e.printStackTrace();
             }
@@ -225,21 +230,33 @@ public class GitAdapter {
      * @param branchName    分支名称
      * @throws GitAPIException GitAPIException
      */
-    public Ref checkOutAndPull(String branchName) throws GitAPIException {
+    public Ref checkOutAndPull(String branchName) {
         // 1. 获取此分支的Ref信息
         Ref branchRef = getBranchRef(branchName);
         boolean isCreateBranch = branchRef == null;
         // 2. 如果Ref不为null，则校验Ref是否为最新，最新直接返回，不为最新则重新拉取分支信息
-        if (!isCreateBranch && checkBranchNewVersion(branchRef)) {
-            return branchRef;
+        try {
+            if (!isCreateBranch && checkBranchNewVersion(branchRef)) {
+                return branchRef;
+            }
+        } catch (GitAPIException e) {
+            e.printStackTrace();
         }
         //  3. 切换分支
-        git.checkout().setCreateBranch(isCreateBranch).setName(branchName)
-                .setStartPoint( "origin/"+branchName)
-                .setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM)
-                .call();
+        try {
+            git.checkout().setCreateBranch(isCreateBranch).setName(branchName)
+                    .setStartPoint( "origin/"+branchName)
+                    .setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM)
+                    .call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
         //  4. 拉取最新代码
-        git.pull().setCredentialsProvider(usernamePasswordCredentialsProvider).call();
+        try {
+            git.pull().setCredentialsProvider(usernamePasswordCredentialsProvider).call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
         branchRef = getBranchRef(branchName);
         return branchRef;
     }
@@ -294,15 +311,35 @@ public class GitAdapter {
      * @throws IOException
      * @throws GitAPIException
      */
-    public List<RevCommit> getCommitList() throws IOException, GitAPIException {
+
+    public List<RevCommit> getCommitList() {
         List<RevCommit> commitList = new ArrayList<>();
-        Iterable<RevCommit> commits = git.log().all().call();
+        Iterable<RevCommit> commits = null;
+        try {
+            commits = git.log().all().call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
         RevWalk walk = new RevWalk(repository);
         int flag =0;
         for(RevCommit commit:commits) {
             commitList.add(commit);
         }
         return commitList;
+    }
+
+    public List<Ref> getRefList() {
+        if(git!=null){
+            try {
+                return git.branchList().call();
+            } catch (GitAPIException e) {
+                e.printStackTrace();
+            }
+        }
+        logger.debug("init git first.");
+        return null;
     }
 
 }
