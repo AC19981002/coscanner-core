@@ -1,0 +1,79 @@
+2022-07-04 23:20:39  [ main:0 ] - [ DEBUG ]  test demo
+2022-07-06 23:44:49  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:44:49  [ main:385 ] - [ INFO ]  pull failure
+2022-07-06 23:47:33  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:47:36  [ main:2452 ] - [ INFO ]  down success
+2022-07-06 23:49:14  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:57:59  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:58:01  [ main:1347 ] - [ INFO ]  pull success
+2022-07-06 23:58:04  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-06 23:58:06  [ main:1323 ] - [ INFO ]  pull success
+2022-07-07 00:04:27  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:04:29  [ main:1447 ] - [ INFO ]  pull success
+2022-07-07 00:04:34  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:04:35  [ main:1426 ] - [ INFO ]  pull success
+2022-07-07 00:04:41  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:04:42  [ main:1433 ] - [ INFO ]  pull success
+2022-07-07 00:04:52  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:04:54  [ main:1493 ] - [ INFO ]  pull success
+2022-07-07 00:07:18  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:07:19  [ main:1352 ] - [ INFO ]  pull success
+2022-07-07 00:08:17  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:08:19  [ main:1404 ] - [ INFO ]  pull success
+2022-07-07 00:14:00  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:14:02  [ main:1729 ] - [ INFO ]  pull success
+2022-07-07 00:17:31  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo
+2022-07-07 00:17:32  [ main:1366 ] - [ INFO ]  pull success
+2022-07-07 11:24:34  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repodemo
+2022-07-07 11:24:42  [ main:8116 ] - [ INFO ]  down success
+2022-07-07 11:26:32  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:27:11  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:27:26  [ main:14271 ] - [ INFO ]  pull success
+2022-07-07 11:35:24  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:35:28  [ main:4168 ] - [ INFO ]  pull success
+2022-07-07 11:37:03  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:37:11  [ main:8631 ] - [ INFO ]  down success
+2022-07-07 11:38:15  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:38:20  [ main:4450 ] - [ INFO ]  down success
+2022-07-07 11:50:22  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 11:50:24  [ main:1991 ] - [ INFO ]  pull success
+2022-07-07 14:32:06  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 14:32:12  [ main:5300 ] - [ INFO ]  down success
+2022-07-07 14:35:54  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 14:35:55  [ main:1279 ] - [ INFO ]  pull success
+2022-07-07 14:49:12  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 14:49:13  [ main:1203 ] - [ INFO ]  pull success
+2022-07-07 14:49:54  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 14:49:55  [ main:1052 ] - [ INFO ]  pull success
+2022-07-07 14:51:46  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 14:51:47  [ main:1225 ] - [ INFO ]  pull success
+2022-07-07 15:19:51  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 15:19:54  [ main:2541 ] - [ INFO ]  pull success
+2022-07-07 15:29:33  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 15:29:35  [ main:1705 ] - [ INFO ]  pull success
+2022-07-07 16:39:25  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 16:39:26  [ main:1093 ] - [ INFO ]  pull success
+2022-07-07 17:25:00  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:25:01  [ main:1311 ] - [ INFO ]  pull success
+2022-07-07 17:26:54  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:26:55  [ main:1035 ] - [ INFO ]  pull success
+2022-07-07 17:30:26  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:30:28  [ main:1560 ] - [ INFO ]  pull success
+2022-07-07 17:30:41  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:30:42  [ main:1050 ] - [ INFO ]  pull success
+2022-07-07 17:31:15  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:31:16  [ main:1169 ] - [ INFO ]  pull success
+2022-07-07 17:53:47  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:53:48  [ main:1210 ] - [ INFO ]  pull success
+2022-07-07 17:56:16  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:56:17  [ main:1051 ] - [ INFO ]  pull success
+2022-07-07 17:56:42  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:56:43  [ main:985 ] - [ INFO ]  pull success
+2022-07-07 17:57:10  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:57:11  [ main:1141 ] - [ INFO ]  pull success
+2022-07-07 17:58:04  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:58:05  [ main:1098 ] - [ INFO ]  pull success
+2022-07-07 17:58:36  [ main:1 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 17:58:37  [ main:1175 ] - [ INFO ]  pull success
+2022-07-07 20:55:44  [ main:0 ] - [ INFO ]  文件路径src/main/resources/repo/demo
+2022-07-07 20:55:46  [ main:1828 ] - [ INFO ]  pull success

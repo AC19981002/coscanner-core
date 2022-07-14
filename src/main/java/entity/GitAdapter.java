@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -340,6 +341,21 @@ public class GitAdapter {
         }
         logger.debug("init git first.");
         return null;
+    }
+
+    public List<Ref> getRemoteRefList(){
+        Collection<Ref> remoteRefCollection = new ArrayList();
+        try {
+            remoteRefCollection = git.lsRemote().setCredentialsProvider(usernamePasswordCredentialsProvider).call();
+        } catch (GitAPIException e) {
+            e.printStackTrace();
+        }
+
+        List<Ref> remoteRefList = new ArrayList<>();
+        for (Ref ref : remoteRefCollection) {
+            remoteRefList.add(ref);
+        }
+        return remoteRefList;
     }
 
 }

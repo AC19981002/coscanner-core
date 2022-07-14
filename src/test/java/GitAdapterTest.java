@@ -9,6 +9,7 @@ import org.junit.runners.JUnit4;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import entity.GitAdapter;
@@ -27,6 +28,21 @@ public class GitAdapterTest {
     private static final PropertityMannager properties = PropertityMannager.getInstance();
 
     @Test
+    public void gitRemoRefListTest() {
+        GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
+        gitAdapter.initGit();
+        List<Ref> call = null;
+        call = gitAdapter.getRemoteRefList();
+        call.forEach((o) -> {
+            System.out.println(o.getName() + "\n"
+                    + o.getObjectId() + "\n"
+                    + o.getObjectId().getName() + "\n"
+            );
+            System.out.println("-------------");
+        });
+    }
+
+    @Test
     public void gitRefListTest() {
         GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
         gitAdapter.initGit();
@@ -36,13 +52,14 @@ public class GitAdapterTest {
         } catch (GitAPIException e) {
             e.printStackTrace();
         }
-        call.forEach((ref)->{
-            System.out.println("Branch:  "  + ref.getName() +"   "
+        call.forEach((ref) -> {
+            System.out.println("Branch:  " + ref.getName() + "   "
                     + ref.getObjectId().getName());
         });
     }
 
     @Test
+    //注意分支名
     public void gitRefTest() {
         GitAdapter gitAdapter = new GitAdapter("https://gitee.com/ac9999/demo.git", "src/main/resources/repo", "master");
         gitAdapter.initGit();
@@ -77,6 +94,7 @@ public class GitAdapterTest {
         gitAdapter.checkOutAndPull("dev");
     }
 
+    @After
     public void delete() {
         try {
             Thread.sleep(10000);
